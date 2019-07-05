@@ -118,6 +118,7 @@ export default {
 		addStpcancel(value) {
 			this.addStep = value;
 		},
+		// 新建脚本步骤确认回馈事件
 		confirm(state, returnStat) {
 			this.addStep = state;
 			if (returnStat) {

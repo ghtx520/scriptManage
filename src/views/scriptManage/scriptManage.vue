@@ -33,11 +33,11 @@
 				<el-button type="warning" plain size="medium" v-if="scriptBtn">下载脚本</el-button>
 			</el-col>
 		</el-row>
-		<el-row style="height: 85vh;box-sizing: border-box;">
+		<el-row :style="{ height: 'calc(100vh - 200px)' }" style="box-sizing: border-box;">
 			<el-col :span="7" style="border: 1px solid #EBEEF5;height: 100%;margin-right: 20px;background: #fff;padding: 10px;border-radius: 4px;">
 				<!-- <h3 style="font-size: 16px;color: #606266;line-height: 32px;">默认目录</h3> -->
-				<ul style="margin-left: 20px;">
-					<li class="script-list" v-for="(item, k) in scriptList" :key="k" style="color: #02A7F0;line-height: 32px;" @click="scriptDetail(item)">
+				<ul style="margin-left: 0px;">
+					<li class="script-list" :class="{ cilckBgn: action == item.case_id }" v-for="(item, k) in scriptList" :key="k" @click="scriptDetail(item)">
 						{{ item.case_name }}
 						<i class="el-icon-delete" style="float: right;color:#d9001b;line-height: 28px;" @click="deleteScriptEvn(item.case_id)"></i>
 					</li>
@@ -56,7 +56,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="script-next">
+				<div class="script-next" :style="{ height: 'calc(100vh - 345px)' }">
 					<div class="top"><span style="font-size: 22px;">脚本步骤</span></div>
 					<div class="center">
 						<ul>
@@ -70,7 +70,7 @@
 					</div>
 				</div>
 				<!-- 新建脚本弹窗 -->
-				<el-dialog title="新建脚本" :visible.sync="scriptSaveStat" width="750px">
+				<el-dialog title="新建脚本" :visible.sync="scriptSaveStat" width="750px" :before-close="cancel">
 					<el-form label-width="100px" size="mini">
 						<el-form-item label="脚本名:"><el-input v-model="addStepData.case_name" style="width:550px"></el-input></el-form-item>
 						<el-form-item label="描述:"><el-input v-model="addStepData.remark" type="textarea" :rows="4" style="width:550px"></el-input></el-form-item>
@@ -123,13 +123,17 @@ export default {
 			if (returnStat) {
 				this.$notify.success({
 					title: '提示',
-					message:  this.title+'成功!'
+					message: this.title + '成功!'
 				});
 				// this.getSteps(this.scriptData.case_id);
 				this.getSteps(4204, '');
 			} else {
-				this.$message.error(this.title+'失败!');
+				this.$message.error(this.title + '失败!');
 			}
+		},
+		//新建脚本关闭事件
+		cancel() {
+			this.scriptSaveStat = false;
 		},
 		// 新增脚本事件
 		addScriptBtn() {
@@ -208,12 +212,15 @@ export default {
 		},
 		// 获取脚本详情事件
 		scriptDetail(i) {
+			// ---------绑定选择背景色
+			this.action = i.case_id;
+			//----------
 			this.scriptData = i;
 			console.log(i);
 			this.scriptBtn = true;
 			// 获取相应脚本步骤列表
-			// this.getSteps(parseInt(i.case_id),'');
-			this.getSteps(4204, '');
+			this.getSteps(parseInt(i.case_id), '');
+			// this.getSteps(4204, '');
 		},
 		// 上传脚本 文件选择事件
 		uploading(e) {
@@ -243,8 +250,9 @@ export default {
 	},
 	data() {
 		return {
+			action: '',
 			// 新增/编辑 脚本弹窗标题
-			title:'',
+			title: '',
 			// 编辑脚本所需数据
 			updateStepData: {},
 			putFile: '',
@@ -310,11 +318,23 @@ export default {
 	}
 }
 
+.cilckBgn {
+	background-color: rgb(102, 177, 255);
+	color: #fff;
+}
+
 .bgnGray {
-	background: #f2f2f2;
+	background-color: #f2f2f2;
+}
+.script-list {
+	line-height: 32px;
+	padding: 0px 10px;
+	margin: 5px 0px;
+	border-radius: 5px;
+	border: 1px solid #e4e7ed;
+	// background-color: #F2F6FC;
 }
 .script-list:hover {
 	cursor: pointer;
-	line-height: 44px;
 }
 </style>

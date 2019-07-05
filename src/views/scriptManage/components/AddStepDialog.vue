@@ -50,7 +50,7 @@
 			</el-form-item>
 		</el-form>
 		<div slot="footer" class="dialog-footer">
-			<el-button @click="$emit('cancel', false)">取 消</el-button>
+			<el-button @click="cancel()">取 消</el-button>
 			<el-button type="primary" @click="confirm">确 定</el-button>
 		</div>
 	</el-dialog>
@@ -96,6 +96,9 @@ export default {
 		};
 	},
 	methods: {
+		cancel(){
+			tihs.$emit('cancel', false)
+		},
 		// 弹窗打开时判断 是否有编辑数据 有则覆盖 stepData 数据-执行请求为编辑, 没有则为新增
 		dialogOpen(){
 			if (this.updateStepData) {

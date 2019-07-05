@@ -1,0 +1,44 @@
+{
+    "leftNavs":[
+        {
+            "stage":1,
+            "name":"应用管理",
+            "url":"/main/appManage",
+            "icon":"el-icon-goods"
+
+        },
+        {
+            "stage":2,
+            "name":"脚本管理",
+            "url":"/main/scriptManage",
+            "icon":"el-icon-goods"
+        },
+        {
+            "stage":3,
+            "name":"数据管理",
+            "url":"/project/interface/list",
+            "icon":"el-icon-goods"
+        },
+        {
+            "stage":4,
+            "name":"任务管理",
+            "url":"/main/taskManage",
+            "icon":"el-icon-goods"
+        },
+        {
+            "stage":5,
+            "name":"报告管理",
+            "url":"/project/testcase/list",
+            "icon":"el-icon-goods",
+            "child":[
+                {
+                    "stage":"5-1",
+                    "name":"报告详情",
+                    "url":"/system/menu",
+                    "icon":"el-icon-goods"
+                }
+            ]
+        }
+
+    ]
+}

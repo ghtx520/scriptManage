@@ -1,0 +1,43 @@
+html,body{
+    background:#eee;
+    font-size:14px;
+}
+.flo_lf{
+    float:left;
+}
+.flo_rg{
+   float:right; 
+}
+.clear{
+    clear:both;
+    overflow: hidden;
+}
+.el-message{
+    min-width:120px;
+    padding:10px 16px;
+}
+$theme-color:#2A64D1;
+/* 列表操作按钮样式 */
+.tab-btn{
+    width:60px;
+    height:27px;
+    line-height:27px;
+    border-radius: 3px;
+    border:1px solid rgba(216,216,216,1);
+    font-size:12px;
+    color:#4A4A4A;
+    background:#ffffff;
+    .icon{
+        color:$theme-color;
+    }
+}
+/* 操作按钮公共样式 */
+.con-btn1{
+    
+}
+.con-btn2{
+    border:1px solid $theme-color;
+    border-radius:5px;
+    background:#ffffff;
+    color:$theme-color;
+}
